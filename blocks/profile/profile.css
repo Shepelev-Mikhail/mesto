@@ -1,0 +1,9 @@
+.profile {
+    margin-top: 42px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: center;
+}
