@@ -17,24 +17,72 @@
     <main>
       <section class="profile page__container">
         <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <div class="profile__title">
+          <h1 class="profile__text">Жак-Ив Кусто</h1>
+          <form>
+            <button class="edit-button"></button>
+          </form>
+        </div>
         <p class="profile__subtitle">Исследователь океана</p>
         <form>
-          <button class="profile__button"></button>
+          <button class="add-button"></button>
         </form>
       </section>
 
       <section class="gallery page__container">
-        <div class="gallery__item">
-          <div class="gallery__caption">
-            <p class="gallery__title">Карачаевск</p>
-            <img class="gallery__like" src="./images/like.svg" alt="Нравится">
+        <div class="card">
+          <img class="card__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+          <div class="card__info">
+            <p class="card__title">Карачаевск</p>
+            <img class="card__like" src="./images/like.svg" alt="Нравится">
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card__image" src="./images/elbrus.jpg" alt="Эльбрус">
+          <div class="card__info">
+            <p class="card__title">Гора Эльбрус</p>
+            <img class="card__like" src="./images/like.svg" alt="Нравится">
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card__image" src="./images/dombai.jpg" alt="Домбай">
+          <div class="card__info">
+            <p class="card__title">Домбай</p>
+            <img class="card__like" src="./images/like.svg" alt="Нравится">
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card__image" src="./images/Pague.jpg" alt="Прага">
+          <div class="card__info">
+            <p class="card__title">Прага</p>
+            <img class="card__like" src="./images/like.svg" alt="Нравится">
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card__image" src="./images/Pico_del_Teide .jpg" alt="Пико дель Тейде">
+          <div class="card__info">
+            <p class="card__title">Пико дель Тейде</p>
+            <img class="card__like" src="./images/like.svg" alt="Нравится">
+          </div>
+        </div>
+
+        <div class="card">
+          <img class="card__image" src="./images/Pyramid.jpg" alt="Пирамиды Гизы">
+          <div class="card__info">
+            <p class="card__title">Пирамиды Гизы</p>
+            <img class="card__like" src="./images/like.svg" alt="Нравится">
           </div>
         </div>
       </section>
     </main>
 
-    <footer></footer>
+    <footer class="footer page__container">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
   </div>
 </body>
 
