@@ -1,10 +1,10 @@
 .profile__title {
-  margin: 26px 0 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-content: flex-start;
-  align-items: baseline;
-  
+    padding: 0;
+    margin: 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 48px;
 }
+
+

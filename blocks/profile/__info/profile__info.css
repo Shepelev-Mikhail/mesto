@@ -1,9 +1,8 @@
-.profile {
-    margin-top: 40px;
+.profile__info {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
-    align-content: stretch;
+    align-content: flex-start;
     align-items: center;
 }
