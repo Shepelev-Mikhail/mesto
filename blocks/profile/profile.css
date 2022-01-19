@@ -1,9 +1,18 @@
 .profile {
     margin-top: 40px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .profile {
+    flex-direction: row;
     justify-content: space-between;
     align-content: stretch;
     align-items: center;
+  }
 }

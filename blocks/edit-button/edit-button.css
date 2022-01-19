@@ -1,9 +1,9 @@
 .edit-button {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     padding: 0;
     margin: 0;
-    margin-left: 18px;
+    margin-left: 10px;
     box-sizing: border-box;
     border: 1px solid #fff;
     background-color: #000;
@@ -11,4 +11,17 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50%;
+    transition: opacity .3s linear;
+}
+
+@media screen and (min-width: 1280px) {
+  .edit-button {
+    width: 24px;
+    height: 24px;
+    margin-left: 18px;
+  }
+}
+
+.edit-button:hover {
+  opacity: .6;
 }

@@ -1,9 +1,18 @@
 .profile__name {
-    padding-left: 30px;
+    padding: 0;
+    padding-left: 28px;
+    margin-top: 26px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-content: flex-start;
     align-items: baseline;
+}
+
+@media screen and (min-width: 768px) {
+  .profile__name {
+    margin-top: 0;
+    padding-left: 30px;
+  }
 }
