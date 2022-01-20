@@ -7,20 +7,20 @@ let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 let popupForm = document.querySelector('.popup__form');
 
-function openPopup () {
+function openPopup() {
   popupName.value = profileTitle.textContent;
   popupDescription.value = profileSubtitle.textContent;
   popup.classList.add('popup_opened');
 }
 
-function closePopup () {
+function closePopup() {
   popup.classList.remove('popup_opened');
 }
 
 editButton.addEventListener('click', openPopup);
 popupClose.addEventListener('click', closePopup);
 
-function formSubmitHandler (evt) {
+function formSubmitHandler(evt) {
   evt.preventDefault();
 
   profileTitle.textContent = popupName.value
