@@ -15,7 +15,7 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 880px) {
   .gallery {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
