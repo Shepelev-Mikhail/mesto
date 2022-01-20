@@ -13,6 +13,7 @@
     line-height: 17px;
     text-align: center;
     transition: opacity .3s linear;
+    cursor: pointer;
 }
 
 .popup__submit:hover {
