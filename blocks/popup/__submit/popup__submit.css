@@ -23,8 +23,6 @@
 @media screen and (min-width: 768px) {
   .popup__submit {
     margin-top: 53px;
-    font-style: normal;
-    font-weight: normal;
     font-size: 18px;
     line-height: 22px;
   }

@@ -23,60 +23,72 @@
               <h1 class="profile__title">Жак-Ив Кусто</h1>
               <p class="profile__subtitle">Исследователь океана</p>
             </div>
-            <button class="edit-button" type="button"></button>
+            <button class="profile__edit-button" type="button"></button>
           </div>
         </div>
-        <button class="add-button" type="button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
 
       <section class="gallery page__container">
-        <div class="card">
+        <article class="card">
           <img class="card__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
           <div class="card__info">
-            <p class="card__title">Карачаевск</p>
-            <img class="card__like" src="./images/like.svg" alt="Нравится">
+            <h2 class="card__title">Карачаевск</h2>
+            <button class="card__button" type="button">
+              <img class="card__like" src="./images/like.svg" alt="Нравится">
+            </button>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <img class="card__image" src="./images/elbrus.jpg" alt="Эльбрус">
           <div class="card__info">
-            <p class="card__title">Гора Эльбрус</p>
-            <img class="card__like" src="./images/like.svg" alt="Нравится">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button class="card__button" type="button">
+              <img class="card__like" src="./images/like.svg" alt="Нравится">
+            </button>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <img class="card__image" src="./images/dombai.jpg" alt="Домбай">
           <div class="card__info">
-            <p class="card__title">Домбай</p>
-            <img class="card__like" src="./images/like.svg" alt="Нравится">
+            <h2 class="card__title">Домбай</h2>
+            <button class="card__button" type="button">
+              <img class="card__like" src="./images/like.svg" alt="Нравится">
+            </button>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <img class="card__image" src="./images/Pague.jpg" alt="Прага">
           <div class="card__info">
-            <p class="card__title">Прага</p>
-            <img class="card__like" src="./images/like.svg" alt="Нравится">
+            <h2 class="card__title">Прага</h2>
+            <button class="card__button" type="button">
+              <img class="card__like" src="./images/like.svg" alt="Нравится">
+            </button>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <img class="card__image" src="./images/PicoDelTeide.jpg" alt="Пико дель Тейде">
           <div class="card__info">
-            <p class="card__title">Пико дель Тейде</p>
-            <img class="card__like" src="./images/like.svg" alt="Нравится">
+            <h2 class="card__title">Пико дель Тейде</h2>
+            <button class="card__button" type="button">
+              <img class="card__like" src="./images/like.svg" alt="Нравится">
+            </button>
           </div>
-        </div>
+        </article>
 
-        <div class="card">
+        <article class="card">
           <img class="card__image" src="./images/Pyramid.jpg" alt="Пирамиды Гизы">
           <div class="card__info">
-            <p class="card__title">Пирамиды Гизы</p>
-            <img class="card__like" src="./images/like.svg" alt="Нравится">
+            <h2 class="card__title">Пирамиды Гизы</h2>
+            <button class="card__button" type="button">
+              <img class="card__like" src="./images/like.svg" alt="Нравится">
+            </button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
 
@@ -87,12 +99,14 @@
     <div class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" method="post">
-          <input class="popup__name" type="text" value="">
-          <input class="popup__description" type="text" value="">
-          <input class="popup__submit" type="submit" value="Сохранить">
+        <form class="popup__form" method="post" name="popupForm">
+          <input class="popup__name" type="text" name="popupName" value="">
+          <input class="popup__description" type="text" name="popupDescription" value="">
+          <input class="popup__submit" type="submit" name="popupSubmit" value="Сохранить">
         </form>
-        <img class="popup__close" src="./images/close.svg" alt="Закрыть">
+        <button class="popup__button" type="button">
+          <img class="popup__close" src="./images/close.svg" alt="Закрыть">
+        </button>
       </div>
     </div>
 
