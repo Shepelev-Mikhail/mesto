@@ -38,6 +38,9 @@
               <img class="card__like" src="./images/like.svg" alt="Нравится">
             </button>
           </div>
+          <button class="card__delete" type="button" aria-label="Удалить">
+            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
+          </button>
         </article>
 
         <article class="card">
@@ -48,6 +51,9 @@
               <img class="card__like" src="./images/like.svg" alt="Нравится">
             </button>
           </div>
+          <button class="card__delete" type="button" aria-label="Удалить">
+            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
+          </button>
         </article>
 
         <article class="card">
@@ -58,6 +64,9 @@
               <img class="card__like" src="./images/like.svg" alt="Нравится">
             </button>
           </div>
+          <button class="card__delete" type="button" aria-label="Удалить">
+            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
+          </button>
         </article>
 
         <article class="card">
@@ -68,6 +77,9 @@
               <img class="card__like" src="./images/like.svg" alt="Нравится">
             </button>
           </div>
+          <button class="card__delete" type="button" aria-label="Удалить">
+            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
+          </button>
         </article>
 
         <article class="card">
@@ -78,6 +90,9 @@
               <img class="card__like" src="./images/like.svg" alt="Нравится">
             </button>
           </div>
+          <button class="card__delete" type="button" aria-label="Удалить">
+            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
+          </button>
         </article>
 
         <article class="card">
@@ -88,6 +103,9 @@
               <img class="card__like" src="./images/like.svg" alt="Нравится">
             </button>
           </div>
+          <button class="card__delete" type="button" aria-label="Удалить">
+            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
+          </button>
         </article>
       </section>
     </main>
@@ -98,12 +116,23 @@
 
     <div class="popup">
       <div class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" method="post" name="popupForm">
-          <input class="popup__input popup__input_type_name" type="text" name="popupName" value="">
-          <input class="popup__input popup__input_type_description" type="text" name="popupDescription" value="">
-          <button class="popup__submit" type="submit">Сохранить</button>
-        </form>
+        <div class="popup__edit">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form class="popup__form" method="post" name="popupForm">
+            <input class="popup__input popup__input_type_name" type="text" name="popupName" value="">
+            <input class="popup__input popup__input_type_description" type="text" name="popupDescription" value="">
+            <button class="popup__submit" type="submit">Сохранить</button>
+          </form>
+        </div>
+
+        <div class="popup__add">
+          <h2 class="popup__title">Новое место</h2>
+          <form class="popup__form" method="post" name="popupForm">
+            <input class="popup__input popup__input_type_place" type="text" name="popupPlace" placeholder="Название" value="">
+            <input class="popup__input popup__input_type_link" type="text" name="popupLink" placeholder="Ссылка на картинку" value="">
+            <button class="popup__submit" type="submit">Создать</button>
+          </form>
+        </div>
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
