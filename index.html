@@ -29,85 +29,11 @@
         <button class="profile__add-button" type="button" aria-label="Добавить" title="Добавить"></button>
       </section>
 
-      <section class="gallery page__container">
-        <article class="card">
-          <img class="card__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-          <div class="card__info">
-            <h2 class="card__title">Карачаевск</h2>
-            <button class="card__button" type="button" aria-label="Нравится">
-              <img class="card__like" src="./images/like.svg" alt="Нравится">
-            </button>
-          </div>
-          <button class="card__delete" type="button" aria-label="Удалить">
-            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
-          </button>
-        </article>
-
-        <article class="card">
-          <img class="card__image" src="./images/elbrus.jpg" alt="Эльбрус">
-          <div class="card__info">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button class="card__button" type="button" aria-label="Нравится">
-              <img class="card__like" src="./images/like.svg" alt="Нравится">
-            </button>
-          </div>
-          <button class="card__delete" type="button" aria-label="Удалить">
-            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
-          </button>
-        </article>
-
-        <article class="card">
-          <img class="card__image" src="./images/dombai.jpg" alt="Домбай">
-          <div class="card__info">
-            <h2 class="card__title">Домбай</h2>
-            <button class="card__button" type="button" aria-label="Нравится">
-              <img class="card__like" src="./images/like.svg" alt="Нравится">
-            </button>
-          </div>
-          <button class="card__delete" type="button" aria-label="Удалить">
-            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
-          </button>
-        </article>
-
-        <article class="card">
-          <img class="card__image" src="./images/Pague.jpg" alt="Прага">
-          <div class="card__info">
-            <h2 class="card__title">Прага</h2>
-            <button class="card__button" type="button" aria-label="Нравится">
-              <img class="card__like" src="./images/like.svg" alt="Нравится">
-            </button>
-          </div>
-          <button class="card__delete" type="button" aria-label="Удалить">
-            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
-          </button>
-        </article>
-
-        <article class="card">
-          <img class="card__image" src="./images/PicoDelTeide.jpg" alt="Пико дель Тейде">
-          <div class="card__info">
-            <h2 class="card__title">Пико дель Тейде</h2>
-            <button class="card__button" type="button" aria-label="Нравится">
-              <img class="card__like" src="./images/like.svg" alt="Нравится">
-            </button>
-          </div>
-          <button class="card__delete" type="button" aria-label="Удалить">
-            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
-          </button>
-        </article>
-
-        <article class="card">
-          <img class="card__image" src="./images/Pyramid.jpg" alt="Пирамиды Гизы">
-          <div class="card__info">
-            <h2 class="card__title">Пирамиды Гизы</h2>
-            <button class="card__button" type="button" aria-label="Нравится">
-              <img class="card__like" src="./images/like.svg" alt="Нравится">
-            </button>
-          </div>
-          <button class="card__delete" type="button" aria-label="Удалить">
-            <img class="card__trash" src="./images/trash.svg" alt="Корзина">
-          </button>
-        </article>
+      <section>
+        <ul class="gallery page__container">
+        </ul>
       </section>
+      
     </main>
 
     <footer class="footer page__container">
@@ -137,6 +63,21 @@
       </div>
     </div>
 
+    <template class="template">
+      <li class="card">
+        <img class="card__image" src="" alt="">
+        <div class="card__info">
+          <h2 class="card__title"></h2>
+          <button class="card__button" type="button" aria-label="Нравится">
+            <img class="card__like" src="./images/like.svg" alt="Нравится">
+          </button>
+        </div>
+        <button class="card__delete" type="button" aria-label="Удалить">
+          <img class="card__trash" src="./images/trash.svg" alt="Корзина">
+        </button>
+      </li>
+    </template>
+    
   </div>
   <script src="./index.js"></script>
 </body>
