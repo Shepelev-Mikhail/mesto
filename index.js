@@ -1,5 +1,4 @@
 // добавление карточек при загрузке
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -28,36 +27,49 @@ const initialCards = [
 ];
 
 const gallery = document.querySelector('.gallery');
-const cardImage = document.querySelector('.card__image');
-const cardTitle = document.querySelector('.card__title');
 const template = document.querySelector('.template').content;
 const popupPlace = document.querySelector('.popup__input_type_place');
 const popupLink = document.querySelector('.popup__input_type_link');
 
 function render() {
-  initialCards.forEach(renderCard);
+  initialCards.forEach((card) => {
+    addCard(card.name, card.link, 'end');
+  });
+};
+
+// добавление карточек
+function addCard(name, link, position) {
+  if (name && link) {
+    const newCard = template.cloneNode(true);
+    newCard.querySelector('.card__title').innerText = name;
+    newCard.querySelector('.card__image').setAttribute('src', link);
+
+    addListeners(newCard);
+
+    if (position === 'start') {
+      gallery.prepend(newCard);
+    } else {
+      gallery.appendChild(newCard);
+    };
+  }
 }
 
-function renderCard(card) {
-  const newCard = template.cloneNode(true);
-  newCard.querySelector('.card__title').innerText = card.name;
-  newCard.querySelector('.card__image').setAttribute('src', card.link);
-  gallery.appendChild(newCard);
+function addListeners(el) {
+  el.querySelector('.card__delete').addEventListener('click', handleDelete);
+  el.querySelector('.card__like').addEventListener('click', handleToggleLike);
 }
 
-// добавление новых карточек
+function handleToggleLike(event) {
+  event.target.classList.toggle('card__like_active');
+}
 
-function addCard(evt) {
-  const newCard = template.cloneNode(true);
-  newCard.querySelector('.card__title').innerText = popupPlace.value;
-  newCard.querySelector('.card__image').setAttribute('src', popupLink.value);
-  gallery.prepend(newCard);
+function handleDelete(event) {
+  event.target.closest('.card').remove();
 }
 
 render();
 
 // открытие и закрытие попапов
-
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 
@@ -67,7 +79,7 @@ const popupAdd = document.querySelector('.popup__add');
 
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const popupClose = document.querySelector('.popup__close-button');
+const closeButton = document.querySelector('.popup__close-button');
 const popupName = document.querySelector('.popup__input_type_name');
 const popupDescription = document.querySelector('.popup__input_type_description');
 
@@ -112,8 +124,7 @@ function saveProfile(evt) {
 
 function createPlace(evt) {
   evt.preventDefault();
-  addCard();
-
+  addCard(popupPlace.value, popupLink.value, 'start');
   closePopup();
   closePopupAdd();
 }
@@ -122,34 +133,18 @@ editButton.addEventListener('click', () => {
   openPopup();
   openPopupEdit();
 });
+
 addButton.addEventListener('click', () => {
   openPopup();
   openPopupAdd();
 });
 
-popupClose.addEventListener('click', () => {
+closeButton.addEventListener('click', () => {
   closePopup();
   closePopupAdd();
   closePopupEdit();
 });
 
-
 popupEditForm.addEventListener('submit', saveProfile);
 popupAddForm.addEventListener('submit', createPlace);
 
-// лайки
-
-const cardButton = document.querySelector('.card__button');
-const cardLike = [document.querySelectorAll('.card__like')];
-
-// console.log(cardLike);
-
-for(let i = 0; i < cardLike.length; i++) {
-  console.log(cardLike[i]);
-}
-
-function like() {
-  cardLike.classList.toggle('card__like_active');
-}
-
-cardButton.addEventListener('click', like);
