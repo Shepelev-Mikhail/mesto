@@ -1,4 +1,3 @@
-// добавление карточек при загрузке
 const initialCards = [
   {
     name: 'Архыз',
@@ -33,56 +32,6 @@ const popupViewImage = document.querySelector('.popup_view-image');
 const imagePopupViewImage = popupViewImage.querySelector('.popup__image');
 const captionPopupViewImage = popupViewImage.querySelector('.popup__caption');
 
-function render() {
-  initialCards.forEach((card) => {
-    addCard(card.name, card.link, 'end');
-  });
-};
-
-// добавление карточек
-function addCard(name, link, position) {
-  if (name && link) {
-    const newCard = template.cloneNode(true);
-    newCard.querySelector('.card__title').innerText = name;
-    newCard.querySelector('.card__image').setAttribute('src', link);
-
-    addListeners(newCard);
-
-    if (position === 'start') {
-      gallery.prepend(newCard);
-    } else {
-      gallery.appendChild(newCard);
-    };
-  }
-}
-
-function addListeners(el) {
-  el.querySelector('.card__delete').addEventListener('click', handleDelete);
-  el.querySelector('.card__like').addEventListener('click', handleToggleLike);
-  el.querySelector('.card__image').addEventListener('click', handleOpenImage);
-}
-
-function handleToggleLike(event) {
-  event.target.classList.toggle('card__like_active');
-}
-
-function handleDelete(event) {
-  event.target.closest('.card').remove();
-}
-
-function handleOpenImage(event) {
-  const card = event.target.closest('.card');
-  const titleCard = card.querySelector('.card__title').textContent;
-  const cardImageLink = event.target.getAttribute('src');
-
-  imagePopupViewImage.setAttribute('src', cardImageLink);
-  captionPopupViewImage.textContent = titleCard;
-
-  openPopup(popupViewImage);
-}
-
-render();
-
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
 
@@ -101,6 +50,61 @@ const listCloseButton = document.querySelectorAll('.popup__close-button');
 const popupProfileForm = popupProfile.querySelector('.popup__form');
 const popupPlaceForm = popupPlace.querySelector('.popup__form');
 
+// добавление карточек при загрузке
+function render() {
+  initialCards.forEach((card) => {
+    addCard(card.name, card.link, 'end');
+  });
+};
+
+// добавление карточек по кнопке
+function addCard(name, link, position) {
+  if (name && link) {
+    const newCard = template.cloneNode(true);
+    newCard.querySelector('.card__title').innerText = name;
+    newCard.querySelector('.card__image').setAttribute('src', link);
+
+    addListeners(newCard);
+
+    if (position === 'start') {
+      gallery.prepend(newCard);
+    } else {
+      gallery.appendChild(newCard);
+    };
+  };
+};
+
+// добавляем слушатели события клик
+function addListeners(el) {
+  el.querySelector('.card__delete').addEventListener('click', handleDelete);
+  el.querySelector('.card__like').addEventListener('click', handleToggleLike);
+  el.querySelector('.card__image').addEventListener('click', handleOpenImage);
+};
+
+// лайк карточки
+function handleToggleLike(event) {
+  event.target.classList.toggle('card__like_active');
+};
+
+// удаление карточки
+function handleDelete(event) {
+  event.target.closest('.card').remove();
+};
+
+// попап просмотра карточки
+function handleOpenImage(event) {
+  const card = event.target.closest('.card');
+  const titleCard = card.querySelector('.card__title').textContent;
+  const cardImageLink = event.target.getAttribute('src');
+
+  imagePopupViewImage.setAttribute('src', cardImageLink);
+  captionPopupViewImage.textContent = titleCard;
+
+  openPopup(popupViewImage);
+};
+
+render();
+
 // открытие и закрытие попапов
 function openPopup(currentPopup) {
   closePopup();
@@ -115,6 +119,7 @@ function closePopup() {
   });
 }
 
+// кнопка сохранить 
 function saveProfile(evt) {
   evt.preventDefault();
 
@@ -124,6 +129,7 @@ function saveProfile(evt) {
   closePopup();
 }
 
+// кнопка создать карточку
 function createPlace(evt) {
   evt.preventDefault();
 
@@ -150,4 +156,3 @@ listCloseButton.forEach((closeButton) => {
 
 popupProfileForm.addEventListener('submit', saveProfile);
 popupPlaceForm.addEventListener('submit', createPlace);
-
