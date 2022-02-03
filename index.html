@@ -40,25 +40,34 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup_profile">
       <div class="popup__container">
-        <div class="popup__edit">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form" method="post" name="popupForm">
-            <input class="popup__input popup__input_type_name" type="text" name="popupName" value="">
-            <input class="popup__input popup__input_type_description" type="text" name="popupDescription" value="">
-            <button class="popup__submit" type="submit">Сохранить</button>
-          </form>
-        </div>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form" method="post" name="popupForm">
+          <input class="popup__input popup__input_type_name" type="text" name="popupName" value="">
+          <input class="popup__input popup__input_type_description" type="text" name="popupDescription" value="">
+          <button class="popup__submit" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
 
-        <div class="popup__add">
-          <h2 class="popup__title">Новое место</h2>
-          <form class="popup__form" method="post" name="popupForm">
-            <input class="popup__input popup__input_type_place" type="text" name="popupPlace" placeholder="Название" value="">
-            <input class="popup__input popup__input_type_link" type="text" name="popupLink" placeholder="Ссылка на картинку" value="">
-            <button class="popup__submit" type="submit">Создать</button>
-          </form>
-        </div>
+    <div class="popup popup_place">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" method="post" name="popupForm">
+          <input class="popup__input popup__input_type_place" type="text" name="popupPlace" placeholder="Название" value="">
+          <input class="popup__input popup__input_type_link" type="text" name="popupLink" placeholder="Ссылка на картинку" value="">
+          <button class="popup__submit" type="submit">Создать</button>
+        </form>
+        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_view-image">
+      <div class="popup__container">
+        <img class="popup__image" src="" alt="">
+        <h2 class="popup__caption"></h2>
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
     </div>
@@ -69,11 +78,9 @@
         <div class="card__info">
           <h2 class="card__title"></h2>
           <button class="card__like" type="button" aria-label="Нравится">
-            <!-- delete card__button class -->
           </button>
         </div>
         <button class="card__delete" type="button" aria-label="Удалить">
-          <!-- delete card__trash class -->
         </button>
       </li>
     </template>
