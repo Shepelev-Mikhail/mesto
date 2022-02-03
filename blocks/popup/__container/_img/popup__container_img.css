@@ -1,8 +1,16 @@
 .popup__container_img {
   max-height: 75vh;
   max-width: 75vw;
+<<<<<<< HEAD
   width: fit-content;
   padding: 0;
   background-color: transparent;
   border-radius: 0;
 }
+=======
+  width: fit-contentgit ;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+>>>>>>> f0c9c27b893abef0d250bd907dc4be5cdd781b00

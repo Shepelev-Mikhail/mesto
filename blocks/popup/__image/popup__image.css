@@ -1,8 +1,17 @@
 .popup__image {
+<<<<<<< HEAD
   width: auto;
   height: auto;
   max-width: 75vw;
   max-height: 75vh;
   object-fit: contain;
   object-position: center;
+=======
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    height: auto;
+    max-width: 75vw;
+    max-height: 75vh;
+>>>>>>> f0c9c27b893abef0d250bd907dc4be5cdd781b00
 }
