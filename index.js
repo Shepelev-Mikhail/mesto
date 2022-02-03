@@ -109,7 +109,7 @@ function openPopup(currentPopup) {
 
 function closePopup() {
   const listPopupsOpened = document.querySelectorAll('.popup_opened');
-  
+
   listPopupsOpened.forEach((popup) => {
     popup.classList.remove('popup_opened');
   });
@@ -134,7 +134,7 @@ function createPlace(evt) {
 editProfile.addEventListener('click', () => {
   nameProfilePopup.value = profileTitle.textContent;
   descriptionProfilePopup.value = profileSubtitle.textContent;
-  
+
   openPopup(popupProfile);
 });
 
