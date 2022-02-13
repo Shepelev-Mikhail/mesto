@@ -116,7 +116,6 @@ render();
 // открытие и закрытие попапов
 function openPopup(currentPopup) {
   currentPopup.classList.add('popup_opened');
-
 };
 
 function closePopup(popup) {
