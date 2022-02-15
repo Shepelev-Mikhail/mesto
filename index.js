@@ -57,7 +57,7 @@ function render() {
   });
 };
 
-// создние карточек
+// создfние карточек
 function createCard(name, link, position) {
   const newCard = template.cloneNode(true);
   const cardImage = newCard.querySelector('.card__image');
@@ -113,13 +113,24 @@ function handleOpenImage(event) {
 
 render();
 
-// открытие и закрытие попапов
+// открытие попапа
 function openPopup(currentPopup) {
   currentPopup.classList.add('popup_opened');
+  document.addEventListener('keydown', pressEscape);
 };
 
+// закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', pressEscape);
+};
+
+// закрытие попапа при нажатии Esc
+function pressEscape(evt) {
+  if (evt.key === 'Escape') {
+    const popupOpen = document.querySelector('.popup_opened');
+    closePopup(popupOpen);
+  };
 };
 
 // кнопка сохранить 
@@ -164,13 +175,6 @@ popups.forEach((popup) => {
       closePopup(popup);
     };
   });
-});
-
-document.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape') {
-    const popupOpen = document.querySelector('.popup_opened');
-    closePopup(popupOpen);
-  };
 });
 
 popupProfileForm.addEventListener('submit', saveProfile);

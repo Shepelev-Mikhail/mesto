@@ -16,6 +16,14 @@
   margin-top: 70px;
 }
 
+.popup__input::placeholder {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #C4C4C4;
+}
+
 @media screen and (min-width: 768px) {
   .popup__input:first-child {
     margin-top: 43px;
