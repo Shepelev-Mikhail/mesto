@@ -1,7 +1,9 @@
-class FormValidator {
+export class FormValidator {
   constructor(settings, form) {
     this._form = form;
     this._settings = settings;
+    this._inputs = Array.from(this._form.querySelectorAll(this._settings.inputSelector));
+    this._button = this._form.querySelector(this._settings.submitButtonSelector);
   }
 
   //показать ошибку валидации
@@ -34,13 +36,13 @@ class FormValidator {
   };
 
   // проверка валидации кнопки
-  _checkButtonValidity (button) {
+  _checkButtonValidity () {
     if (this._form.checkValidity()) {
-      button.classList.remove(this._settings.inactiveButtonClass);
-      button.disabled = false;
+      this._button.classList.remove(this._settings.inactiveButtonClass);
+      this._button.disabled = false;
     } else {
-      button.classList.add(this._settings.inactiveButtonClass);
-      button.disabled = true;
+      this._button.classList.add(this._settings.inactiveButtonClass);
+      this._button.disabled = true;
     };
   };
 
@@ -56,16 +58,13 @@ class FormValidator {
   // };
 
   _setEventListeners() {
-    const inputs = Array.from(this._form.querySelectorAll(this._settings.inputSelector));
-    const button = this._form.querySelector(this._settings.submitButtonSelector);
-
     //checkValidityPopup(addPlace, rest, form, button, inputs);
     //checkValidityPopup(editProfile, rest, form, button, inputs);
 
-    inputs.forEach((input) => {
+    this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input);
-        this._checkButtonValidity(button);
+        this._checkButtonValidity();
       });
     });
   }
@@ -78,13 +77,3 @@ class FormValidator {
     this._setEventListeners();
   };
 }
-
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__submit_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};

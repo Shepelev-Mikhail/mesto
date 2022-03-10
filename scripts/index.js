@@ -1,3 +1,14 @@
+import { FormValidator } from './FormValidator.js';
+
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -49,6 +60,13 @@ const addPlace = document.querySelector('.profile__add-button');
 const popups = document.querySelectorAll('.popup');
 const popupProfileForm = popupProfile.querySelector('.popup__form');
 const popupPlaceForm = popupPlace.querySelector('.popup__form');
+
+// Проверка валидации форм
+const popupProfileFormValidator = new FormValidator(validationConfig, popupProfileForm);
+const popupPlaceFormvalidator = new FormValidator(validationConfig, popupPlaceForm);
+
+popupProfileFormValidator.enableValidation();
+popupPlaceFormvalidator.enableValidation();
 
 // добавление карточек при загрузке
 function render() {
@@ -133,7 +151,7 @@ function pressEscape(evt) {
   };
 };
 
-// кнопка сохранить 
+// кнопка сохранить
 function saveProfile(evt) {
   evt.preventDefault();
 
