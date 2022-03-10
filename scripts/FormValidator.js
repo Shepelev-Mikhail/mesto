@@ -46,21 +46,7 @@ export class FormValidator {
     };
   };
 
-  // // проверка валидации при открытии попапа
-  // const checkValidityPopup = (btnEvent, rest, form, btnSubmit, inputs) => {
-  //   btnEvent.addEventListener('click', () => {
-  //     checkButtonValidity(rest, form, btnSubmit);
-
-  //     inputs.forEach((input) => {
-  //       checkInputValidity(rest, form, input);
-  //     });
-  //   });
-  // };
-
   _setEventListeners() {
-    //checkValidityPopup(addPlace, rest, form, button, inputs);
-    //checkValidityPopup(editProfile, rest, form, button, inputs);
-
     this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input);
@@ -68,6 +54,15 @@ export class FormValidator {
       });
     });
   }
+
+  // проверка валидации при открытии попапа
+  checkValidityPopup () {
+    this._inputs.forEach((input) => {
+      this._checkInputValidity(input);
+    });
+
+    this._checkButtonValidity();
+  };
 
   enableValidation() {
     this._form.addEventListener('submit', (event) => {

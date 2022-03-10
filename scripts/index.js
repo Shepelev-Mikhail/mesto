@@ -176,10 +176,13 @@ editProfile.addEventListener('click', () => {
   nameProfilePopup.value = profileTitle.textContent;
   descriptionProfilePopup.value = profileSubtitle.textContent;
 
+  popupProfileFormValidator.checkValidityPopup();
+
   openPopup(popupProfile);
 });
 
 addPlace.addEventListener('click', () => {
+  popupPlaceFormvalidator.checkValidityPopup();
   openPopup(popupPlace);
 });
 
