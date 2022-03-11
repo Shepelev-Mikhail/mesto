@@ -46,6 +46,7 @@ export class FormValidator {
     };
   };
 
+  // слушатели
   _setEventListeners() {
     this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
@@ -64,6 +65,7 @@ export class FormValidator {
     this._checkButtonValidity();
   };
 
+  // валидация
   enableValidation() {
     this._form.addEventListener('submit', (event) => {
       event.preventDefault();
