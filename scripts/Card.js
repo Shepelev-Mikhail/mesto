@@ -1,4 +1,4 @@
-import {imagePopupViewImage, captionPopupViewImage, popupViewImage, openPopup} from './utils.js';
+import { imagePopupViewImage, captionPopupViewImage, popupViewImage, openPopup } from './utils.js';
 
 export class Card {
   constructor(data, cardTemplateSelector) {
@@ -13,45 +13,42 @@ export class Card {
   };
 
   // удаление карточки
-  _handleDelete = () => {
-    this._newCard.remove();
+  _handleDelete = (evt) => {
+    evt.target.closest('.card').remove();
   };
 
   // попап просмотра карточки
-  _handleOpenImage = () => {
-    //const card = event.target.closest('.card');
-    const titleCard = this._newCard.querySelector('.card__title').textContent;
-    const cardImageLink = this._newCard.getAttribute('src');
+  _handleOpenImage = (evt) => {
+    const card = evt.target.closest('.card');
+    const titleCard = card.querySelector('.card__title').textContent;
+    const cardImageLink = evt.target.getAttribute('src');
 
-    imagePopupViewImage.setAttribute('src', cardImageLink);
-    imagePopupViewImage.setAttribute('alt', titleCard);
+    imagePopupViewImage.src = cardImageLink;
+    imagePopupViewImage.alt = titleCard;
     captionPopupViewImage.textContent = titleCard;
 
     openPopup(popupViewImage);
   };
 
   // добавляем слушатели события клик
-  _addListeners () {
+  _addListeners() {
     this._deleteButton.addEventListener('click', this._handleDelete);
     this._likeButton.addEventListener('click', this._handleToggleLike);
     this._cardImage.addEventListener('click', this._handleOpenImage);
   };
 
-  // создfние карточек
-  createCard (name, link, position) {
-    // нашли
+  // создание карточек
+  createCard() {
     this._newCard = this._template.cloneNode(true);
-    //const cardImage = this._newCard.querySelector('.card__image');
+
     this._likeButton = this._newCard.querySelector('.card__like');
     this._deleteButton = this._newCard.querySelector('.card__delete');
     this._cardImage = this._newCard.querySelector('.card__image');
 
-    // заполнили
     this._newCard.querySelector('.card__title').innerText = this._name;
     this._cardImage.setAttribute('src', this._link);
     this._cardImage.setAttribute('alt', this._name);
 
-    // слушатели
     this._addListeners();
 
     return this._newCard;
