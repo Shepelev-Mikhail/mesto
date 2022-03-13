@@ -1,33 +1,36 @@
 export class FormValidator {
   constructor(settings, form) {
     this._form = form;
-    this._settings = settings;
-    this._inputs = Array.from(this._form.querySelectorAll(this._settings.inputSelector));
-    this._button = this._form.querySelector(this._settings.submitButtonSelector);
+
+    this._formSelector = settings.formSelector
+    this._inputSelector = settings.inputSelector
+    this._submitButtonSelector = settings.submitButtonSelector
+    this._inactiveButtonClass = settings.inactiveButtonClass
+    this._inputErrorClass = settings.inputErrorClass
+    this._errorClass = settings.errorClass
+
+    this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
+    this._button = this._form.querySelector(this._submitButtonSelector);
   }
 
   //показать ошибку валидации
-  _showErrorMessage (input) {
-    const { inputErrorClass, errorClass } = this._settings;
-
+  _showErrorMessage(input) {
     const errorMessage = this._form.querySelector(`.${input.id}-error`);
-    input.classList.add(inputErrorClass);
-    errorMessage.classList.add(errorClass);
+    input.classList.add(this._inputErrorClass);
+    errorMessage.classList.add(this._errorClass);
     errorMessage.textContent = input.validationMessage;
   };
 
   // скрыть ошибку валидации
-  _hideErrorMessage (input) {
-    const { inputErrorClass, errorClass } = this._settings;
-
+  _hideErrorMessage(input) {
     const errorMessage = this._form.querySelector(`.${input.id}-error`);
-    input.classList.remove(inputErrorClass);
-    errorMessage.classList.remove(errorClass);
+    input.classList.remove(this._inputErrorClass);
+    errorMessage.classList.remove(this._errorClass);
     errorMessage.textContent = '';
   };
 
   // проверка валидации инпутов
-  _checkInputValidity (input) {
+  _checkInputValidity(input) {
     if (input.validity.valid) {
       this._hideErrorMessage(input);
     } else {
@@ -36,12 +39,12 @@ export class FormValidator {
   };
 
   // проверка валидации кнопки
-  _checkButtonValidity () {
+  checkButtonValidity() {
     if (this._form.checkValidity()) {
-      this._button.classList.remove(this._settings.inactiveButtonClass);
+      this._button.classList.remove(this._inactiveButtonClass);
       this._button.disabled = false;
     } else {
-      this._button.classList.add(this._settings.inactiveButtonClass);
+      this._button.classList.add(this._inactiveButtonClass);
       this._button.disabled = true;
     };
   };
@@ -51,18 +54,18 @@ export class FormValidator {
     this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
         this._checkInputValidity(input);
-        this._checkButtonValidity();
+        this.checkButtonValidity();
       });
     });
   }
 
-  // проверка валидации при открытии попапа
-  checkValidityPopup () {
-    this._inputs.forEach((input) => {
-      this._checkInputValidity(input);
-    });
+  // ресет инпутов и ошибок
+  resetForm() {
+    this._form.reset();
 
-    this._checkButtonValidity();
+    this._inputs.forEach((input) => {
+      this._hideErrorMessage(input);
+    });
   };
 
   // валидация

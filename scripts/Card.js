@@ -2,7 +2,7 @@ import { imagePopupViewImage, captionPopupViewImage, popupViewImage, openPopup }
 
 export class Card {
   constructor(data, cardTemplateSelector) {
-    this._template = document.querySelector(cardTemplateSelector).content;
+    this._template = document.querySelector(cardTemplateSelector).content.querySelector('.card');
     this._name = data.name;
     this._link = data.link;
   }
@@ -13,19 +13,15 @@ export class Card {
   };
 
   // удаление карточки
-  _handleDelete = (evt) => {
-    evt.target.closest('.card').remove();
+  _handleDelete = () => {
+    this._newCard.remove();
   };
 
   // попап просмотра карточки
   _handleOpenImage = (evt) => {
-    const card = evt.target.closest('.card');
-    const titleCard = card.querySelector('.card__title').textContent;
-    const cardImageLink = evt.target.getAttribute('src');
-
-    imagePopupViewImage.src = cardImageLink;
-    imagePopupViewImage.alt = titleCard;
-    captionPopupViewImage.textContent = titleCard;
+    imagePopupViewImage.src = this._link;
+    imagePopupViewImage.alt = this._name;
+    captionPopupViewImage.textContent = this._name;
 
     openPopup(popupViewImage);
   };
@@ -40,7 +36,6 @@ export class Card {
   // создание карточек
   createCard() {
     this._newCard = this._template.cloneNode(true);
-
     this._likeButton = this._newCard.querySelector('.card__like');
     this._deleteButton = this._newCard.querySelector('.card__delete');
     this._cardImage = this._newCard.querySelector('.card__image');

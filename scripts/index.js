@@ -68,13 +68,7 @@ popupPlaceFormvalidator.enableValidation();
 // добавление карточек при загрузке
 function render() {
   initialCards.forEach((card) => {
-
-    const data = {
-      name: card.name,
-      link: card.link
-    }
-
-    addCard(data, 'end');
+    addCard(card, 'end');
   });
 };
 
@@ -115,24 +109,24 @@ function createPlace(evt) {
 
   addCard(data, 'start');
   closePopup(popupPlace);
-
-  namePlacePopup.value = "";
-  linkPlacePopup.value = "";
 };
 
 // клик на кнопку редактивания
 editProfile.addEventListener('click', () => {
+  popupProfileFormValidator.resetForm();
+
   nameProfilePopup.value = profileTitle.textContent;
   descriptionProfilePopup.value = profileSubtitle.textContent;
 
-  popupProfileFormValidator.checkValidityPopup();
+  popupProfileFormValidator.checkButtonValidity();
 
   openPopup(popupProfile);
 });
 
 // клик на кнопку +
 addPlace.addEventListener('click', () => {
-  popupPlaceFormvalidator.checkValidityPopup();
+  popupPlaceFormvalidator.resetForm();
+  popupPlaceFormvalidator.checkButtonValidity();
 
   openPopup(popupPlace);
 });
@@ -140,11 +134,7 @@ addPlace.addEventListener('click', () => {
 //закрыть попап на клик и оверлей
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup__close-button')) {
-      closePopup(popup);
-    };
-
-    if (evt.target === evt.currentTarget) {
+    if (evt.target.classList.contains('popup__close-button') || (evt.target === evt.currentTarget)) {
       closePopup(popup);
     };
   });
