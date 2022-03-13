@@ -2,12 +2,12 @@ export class FormValidator {
   constructor(settings, form) {
     this._form = form;
 
-    this._formSelector = settings.formSelector
-    this._inputSelector = settings.inputSelector
-    this._submitButtonSelector = settings.submitButtonSelector
-    this._inactiveButtonClass = settings.inactiveButtonClass
-    this._inputErrorClass = settings.inputErrorClass
-    this._errorClass = settings.errorClass
+    this._formSelector = settings.formSelector;
+    this._inputSelector = settings.inputSelector;
+    this._submitButtonSelector = settings.submitButtonSelector;
+    this._inactiveButtonClass = settings.inactiveButtonClass;
+    this._inputErrorClass = settings.inputErrorClass;
+    this._errorClass = settings.errorClass;
 
     this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._button = this._form.querySelector(this._submitButtonSelector);
@@ -57,7 +57,7 @@ export class FormValidator {
         this.checkButtonValidity();
       });
     });
-  }
+  };
 
   // ресет инпутов и ошибок
   resetForm() {
@@ -76,4 +76,4 @@ export class FormValidator {
 
     this._setEventListeners();
   };
-}
+};

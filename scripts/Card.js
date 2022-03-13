@@ -5,7 +5,7 @@ export class Card {
     this._template = document.querySelector(cardTemplateSelector).content.querySelector('.card');
     this._name = data.name;
     this._link = data.link;
-  }
+  };
 
   // лайк карточки
   _handleToggleLike = () => {
@@ -48,4 +48,4 @@ export class Card {
 
     return this._newCard;
   };
-}
+};

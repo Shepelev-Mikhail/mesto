@@ -105,7 +105,7 @@ function createPlace(evt) {
   const data = {
     name: namePlacePopup.value,
     link: linkPlacePopup.value
-  }
+  };
 
   addCard(data, 'start');
   closePopup(popupPlace);
