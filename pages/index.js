@@ -1,6 +1,7 @@
-import { openPopup, closePopup } from './utils.js';
-import { FormValidator } from './FormValidator.js';
-import { Card } from './Card.js';
+import { openPopup, closePopup } from '../components/utils.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { Card } from '../components/Card.js';
+import { UserInfo } from '../components/UserInfo.js';
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -40,8 +41,8 @@ const initialCards = [
 
 const gallery = document.querySelector('.gallery');
 
-const profileTitle = document.querySelector('.profile__title');
-const profileSubtitle = document.querySelector('.profile__subtitle');
+//const profileTitle = document.querySelector('.profile__title');
+//const profileSubtitle = document.querySelector('.profile__subtitle');
 
 const popupProfile = document.querySelector('.popup_profile');
 const nameProfilePopup = popupProfile.querySelector('.popup__input_type_name');
@@ -92,8 +93,10 @@ render();
 function saveProfile(evt) {
   evt.preventDefault();
 
-  profileTitle.textContent = nameProfilePopup.value
-  profileSubtitle.textContent = descriptionProfilePopup.value
+  userInfo.setUserInfo(nameProfilePopup.value, descriptionProfilePopup.value);
+
+  //profileTitle.textContent = nameProfilePopup.value
+  //profileSubtitle.textContent = descriptionProfilePopup.value
 
   closePopup(popupProfile);
 };
@@ -111,12 +114,22 @@ function createPlace(evt) {
   closePopup(popupPlace);
 };
 
-// клик на кнопку редактивания
+
+//класс UserInfo
+const userInfo = new UserInfo({
+  nameSelector: '.profile__title', 
+  descriptionSelector: '.profile__subtitle'
+});
+
+
+// клик на кнопку редактирования
 editProfile.addEventListener('click', () => {
   popupProfileFormValidator.resetForm();
 
-  nameProfilePopup.value = profileTitle.textContent;
-  descriptionProfilePopup.value = profileSubtitle.textContent;
+  const userInfoContent = userInfo.getUserInfo();
+  
+  nameProfilePopup.value = userInfoContent.name;
+  descriptionProfilePopup.value = userInfoContent.description;
 
   popupProfileFormValidator.checkButtonValidity();
 
