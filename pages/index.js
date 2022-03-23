@@ -2,6 +2,7 @@ import { openPopup, closePopup } from '../components/utils.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Card } from '../components/Card.js';
 import { UserInfo } from '../components/UserInfo.js';
+import { Section } from '../components/Section.js';
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -66,28 +67,42 @@ const popupPlaceFormvalidator = new FormValidator(validationConfig, popupPlaceFo
 popupProfileFormValidator.enableValidation();
 popupPlaceFormvalidator.enableValidation();
 
+//класс Section
+const section = new Section({items: initialCards, renderer: addCard}, '.gallery');
+section.rendererElements();
 // добавление карточек при загрузке
-function render() {
-  initialCards.forEach((card) => {
-    addCard(card, 'end');
-  });
-};
+// function render() {
+//   initialCards.forEach((card) => {
+//     addCard(card);
+//   });
+// };
 
 // функция добавить карточку
-function addCard(data, position) {
+function addCard(data, callback) {
   if (data.name && data.link) {
     const objCard = new Card(data, '.template');
     const card = objCard.createCard();
-
-    if (position === 'start') {
-      gallery.prepend(card);
-    } else {
-      gallery.appendChild(card);
-    };
+    
+    callback(card);
+    //gallery.prepend(card);
   };
 };
 
-render();
+//функция добавить карточку старая
+// function addCard(data, position) {
+//   if (data.name && data.link) {
+//     const objCard = new Card(data, '.template');
+//     const card = objCard.createCard();
+
+//     if (position === 'start') {
+//       gallery.prepend(card);
+//     } else {
+//       gallery.appendChild(card);
+//     };
+//   };
+// };
+
+// render();
 
 // функция сохранить профиль
 function saveProfile(evt) {
@@ -110,7 +125,9 @@ function createPlace(evt) {
     link: linkPlacePopup.value
   };
 
-  addCard(data, 'start');
+  const section = new Section({items: [data], renderer: addCard}, '.gallery');
+  section.rendererElements();
+  //addCard(data);
   closePopup(popupPlace);
 };
 
