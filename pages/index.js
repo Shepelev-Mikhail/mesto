@@ -1,8 +1,8 @@
-import { openPopup, closePopup } from '../components/utils.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Card } from '../components/Card.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Section } from '../components/Section.js';
+import { Popup } from '../components/Popup.js';
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -40,7 +40,7 @@ const initialCards = [
   }
 ];
 
-const gallery = document.querySelector('.gallery');
+//const gallery = document.querySelector('.gallery');
 
 //const profileTitle = document.querySelector('.profile__title');
 //const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -60,7 +60,7 @@ const popups = document.querySelectorAll('.popup');
 const popupProfileForm = popupProfile.querySelector('.popup__form');
 const popupPlaceForm = popupPlace.querySelector('.popup__form');
 
-// проверка валидации форм
+// класс FormValidator
 const popupProfileFormValidator = new FormValidator(validationConfig, popupProfileForm);
 const popupPlaceFormvalidator = new FormValidator(validationConfig, popupPlaceForm);
 
@@ -70,39 +70,26 @@ popupPlaceFormvalidator.enableValidation();
 //класс Section
 const section = new Section({items: initialCards, renderer: addCard}, '.gallery');
 section.rendererElements();
-// добавление карточек при загрузке
-// function render() {
-//   initialCards.forEach((card) => {
-//     addCard(card);
-//   });
-// };
 
-// функция добавить карточку
+// класс Card
 function addCard(data, callback) {
   if (data.name && data.link) {
     const objCard = new Card(data, '.template');
     const card = objCard.createCard();
     
     callback(card);
-    //gallery.prepend(card);
   };
 };
 
-//функция добавить карточку старая
-// function addCard(data, position) {
-//   if (data.name && data.link) {
-//     const objCard = new Card(data, '.template');
-//     const card = objCard.createCard();
+//класс UserInfo
+const userInfo = new UserInfo({
+  nameSelector: '.profile__title', 
+  descriptionSelector: '.profile__subtitle'
+});
 
-//     if (position === 'start') {
-//       gallery.prepend(card);
-//     } else {
-//       gallery.appendChild(card);
-//     };
-//   };
-// };
-
-// render();
+//класс Popup
+const newPopupPlace = new Popup('.popup_place');
+const newPopupProfile = new Popup('.popup_profile');
 
 // функция сохранить профиль
 function saveProfile(evt) {
@@ -110,10 +97,7 @@ function saveProfile(evt) {
 
   userInfo.setUserInfo(nameProfilePopup.value, descriptionProfilePopup.value);
 
-  //profileTitle.textContent = nameProfilePopup.value
-  //profileSubtitle.textContent = descriptionProfilePopup.value
-
-  closePopup(popupProfile);
+  newPopupProfile.close();
 };
 
 // кнопка создать карточку
@@ -127,16 +111,9 @@ function createPlace(evt) {
 
   const section = new Section({items: [data], renderer: addCard}, '.gallery');
   section.rendererElements();
-  //addCard(data);
-  closePopup(popupPlace);
+  
+  newPopupPlace.close();
 };
-
-
-//класс UserInfo
-const userInfo = new UserInfo({
-  nameSelector: '.profile__title', 
-  descriptionSelector: '.profile__subtitle'
-});
 
 
 // клик на кнопку редактирования
@@ -150,7 +127,8 @@ editProfile.addEventListener('click', () => {
 
   popupProfileFormValidator.checkButtonValidity();
 
-  openPopup(popupProfile);
+  newPopupProfile.open();
+  newPopupProfile.setEventListeners();
 });
 
 // клик на кнопку +
@@ -158,16 +136,8 @@ addPlace.addEventListener('click', () => {
   popupPlaceFormvalidator.resetForm();
   popupPlaceFormvalidator.checkButtonValidity();
 
-  openPopup(popupPlace);
-});
-
-//закрыть попап на клик и оверлей
-popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup__close-button') || (evt.target === evt.currentTarget)) {
-      closePopup(popup);
-    };
-  });
+  newPopupPlace.open();
+  newPopupPlace.setEventListeners();
 });
 
 popupProfileForm.addEventListener('submit', saveProfile);

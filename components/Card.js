@@ -1,4 +1,4 @@
-import { imagePopupViewImage, captionPopupViewImage, popupViewImage, openPopup } from './utils.js';
+import { imagePopupViewImage, captionPopupViewImage, popupViewImage,  } from './utils.js'; //openPopup
 
 export class Card {
   constructor(data, cardTemplateSelector) {
