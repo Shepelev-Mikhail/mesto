@@ -1,10 +1,13 @@
-import { imagePopupViewImage, captionPopupViewImage, popupViewImage,  } from './utils.js'; //openPopup
+//import { imagePopupViewImage, captionPopupViewImage, popupViewImage,  } from './utils.js'; //openPopup
+import { PopupWithImage } from './PopupWithImage.js';
 
 export class Card {
-  constructor(data, cardTemplateSelector) {
+  constructor(data, cardTemplateSelector, handleCardClick) {
     this._template = document.querySelector(cardTemplateSelector).content.querySelector('.card');
-    this._name = data.name;
-    this._link = data.link;
+    //this._name = data.name;
+    //this._link = data.link;
+    this._data = data;
+    this._handleCardClick = handleCardClick;
   };
 
   // лайк карточки
@@ -18,19 +21,25 @@ export class Card {
   };
 
   // попап просмотра карточки
-  _handleOpenImage = (evt) => {
-    imagePopupViewImage.src = this._link;
-    imagePopupViewImage.alt = this._name;
-    captionPopupViewImage.textContent = this._name;
+  // _handleOpenImage = (evt) => {
+  //   // imagePopupViewImage.src = this._link;
+  //   // imagePopupViewImage.alt = this._name;
+  //   // captionPopupViewImage.textContent = this._name;
 
-    openPopup(popupViewImage);
-  };
+  //   // openPopup(popupViewImage);
+  //   const viewCard = new PopupWithImage('.popup_view-image');
+  //   viewCard.open(this._data);
+  //   viewCard.setEventListeners();
+  // };
 
   // добавляем слушатели события клик
   _addListeners() {
     this._deleteButton.addEventListener('click', this._handleDelete);
     this._likeButton.addEventListener('click', this._handleToggleLike);
-    this._cardImage.addEventListener('click', this._handleOpenImage);
+    //this._cardImage.addEventListener('click', this._handleOpenImage);
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._data)
+    });
   };
 
   // создание карточек
@@ -40,9 +49,9 @@ export class Card {
     this._deleteButton = this._newCard.querySelector('.card__delete');
     this._cardImage = this._newCard.querySelector('.card__image');
 
-    this._newCard.querySelector('.card__title').innerText = this._name;
-    this._cardImage.setAttribute('src', this._link);
-    this._cardImage.setAttribute('alt', this._name);
+    this._newCard.querySelector('.card__title').innerText = this._data.name;
+    this._cardImage.setAttribute('src', this._data.link);
+    this._cardImage.setAttribute('alt', this._data.name);
 
     this._addListeners();
 

@@ -3,6 +3,8 @@ import { Card } from '../components/Card.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Section } from '../components/Section.js';
 import { Popup } from '../components/Popup.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -50,15 +52,31 @@ const nameProfilePopup = popupProfile.querySelector('.popup__input_type_name');
 const descriptionProfilePopup = popupProfile.querySelector('.popup__input_type_description');
 
 const popupPlace = document.querySelector('.popup_place');
-const namePlacePopup = popupPlace.querySelector('.popup__input_type_place');
-const linkPlacePopup = popupPlace.querySelector('.popup__input_type_link');
+// const namePlacePopup = popupPlace.querySelector('.popup__input_type_place');
+// const linkPlacePopup = popupPlace.querySelector('.popup__input_type_link');
 
 const editProfile = document.querySelector('.profile__edit-button');
 const addPlace = document.querySelector('.profile__add-button');
 
-const popups = document.querySelectorAll('.popup');
+// const popups = document.querySelectorAll('.popup');
 const popupProfileForm = popupProfile.querySelector('.popup__form');
 const popupPlaceForm = popupPlace.querySelector('.popup__form');
+
+
+//класс Popup
+const newPopupPlace = new Popup('.popup_place');
+const newPopupProfile = new Popup('.popup_profile');
+
+const newPopupViewImage = new PopupWithImage('.popup_view-image');
+newPopupViewImage.setEventListeners();
+
+const newPopupProfileForm = new PopupWithForm('.popup_profile', saveProfile);
+newPopupProfileForm.setEventListeners();
+newPopupProfileForm.close();
+
+const newPopupPlaceForm = new PopupWithForm('.popup_place', createPlace);
+newPopupPlaceForm.setEventListeners();
+newPopupPlaceForm.close();
 
 // класс FormValidator
 const popupProfileFormValidator = new FormValidator(validationConfig, popupProfileForm);
@@ -74,7 +92,7 @@ section.rendererElements();
 // класс Card
 function addCard(data, callback) {
   if (data.name && data.link) {
-    const objCard = new Card(data, '.template');
+    const objCard = new Card(data, '.template', newPopupViewImage.open);
     const card = objCard.createCard();
     
     callback(card);
@@ -87,29 +105,25 @@ const userInfo = new UserInfo({
   descriptionSelector: '.profile__subtitle'
 });
 
-//класс Popup
-const newPopupPlace = new Popup('.popup_place');
-const newPopupProfile = new Popup('.popup_profile');
 
 // функция сохранить профиль
-function saveProfile(evt) {
+function saveProfile(evt, data) {
   evt.preventDefault();
 
-  userInfo.setUserInfo(nameProfilePopup.value, descriptionProfilePopup.value);
-
+  userInfo.setUserInfo(data.popupName, data.popupDescription);
   newPopupProfile.close();
 };
 
 // кнопка создать карточку
-function createPlace(evt) {
+function createPlace(evt, data) {
   evt.preventDefault();
 
-  const data = {
-    name: namePlacePopup.value,
-    link: linkPlacePopup.value
+  const currData = {
+    name: data.popupPlace,
+    link: data.popupLink
   };
 
-  const section = new Section({items: [data], renderer: addCard}, '.gallery');
+  const section = new Section({items: [currData], renderer: addCard}, '.gallery');
   section.rendererElements();
   
   newPopupPlace.close();
@@ -140,5 +154,8 @@ addPlace.addEventListener('click', () => {
   newPopupPlace.setEventListeners();
 });
 
-popupProfileForm.addEventListener('submit', saveProfile);
-popupPlaceForm.addEventListener('submit', createPlace);
+//popupProfileForm.addEventListener('submit', saveProfile);
+//popupPlaceForm.addEventListener('submit', createPlace);
+
+
+
