@@ -11,7 +11,7 @@ export class FormValidator {
 
     this._inputs = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._button = this._form.querySelector(this._submitButtonSelector);
-  }
+  };
 
   //показать ошибку валидации
   _showErrorMessage(input) {

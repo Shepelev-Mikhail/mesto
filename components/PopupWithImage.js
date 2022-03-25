@@ -3,8 +3,9 @@ import { Popup } from "./Popup.js";
 export class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-  }
+  };
 
+  // открыть попап с заполнением
   open = (data) => {
     this._popup.classList.add('popup_opened');
     document.addEventListener('keydown', this._handleEscClose);
@@ -15,5 +16,5 @@ export class PopupWithImage extends Popup {
     imagePopupViewImage.src = data.link;
     imagePopupViewImage.alt = data.name;
     captionPopupViewImage.textContent = data.name;
-  }
-}
+  };
+};
