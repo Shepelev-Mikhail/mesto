@@ -6,6 +6,8 @@ import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 
+import './index.css';
+
 //класс Popup
 const newPopupViewImage = new PopupWithImage('.popup_view-image');
 newPopupViewImage.setEventListeners();
