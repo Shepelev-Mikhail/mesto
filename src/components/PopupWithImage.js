@@ -3,18 +3,16 @@ import { Popup } from "./Popup.js";
 export class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
+    this._imagePopupViewImage = this._popup.querySelector('.popup__image');
+    this._captionPopupViewImage = this._popup.querySelector('.popup__caption');
   };
 
   // открыть попап с заполнением
   open = (data) => {
-    this._popup.classList.add('popup_opened');
-    document.addEventListener('keydown', this._handleEscClose);
+    super.open();
 
-    const imagePopupViewImage = this._popup.querySelector('.popup__image');
-    const captionPopupViewImage = this._popup.querySelector('.popup__caption');
-
-    imagePopupViewImage.src = data.link;
-    imagePopupViewImage.alt = data.name;
-    captionPopupViewImage.textContent = data.name;
+    this._imagePopupViewImage.src = data.link;
+    this._imagePopupViewImage.alt = data.name;
+    this._captionPopupViewImage.textContent = data.name;
   };
 };

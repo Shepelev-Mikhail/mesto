@@ -13,6 +13,7 @@ export class Card {
   // удаление карточки
   _handleDelete = () => {
     this._newCard.remove();
+    this._newCard = null;
   };
 
   // добавление обработки

@@ -5,15 +5,14 @@ export class PopupWithForm extends Popup {
     super(popupSelector);
     this._form = this._popup.querySelector('.popup__form');
     this._callbackSubmitForm = callbackSubmitForm;
+    this._popupInputs = this._popup.querySelectorAll('.popup__input');
   };
 
   // получение значений полей
   _getInputValues() {
     let data = {};
-    const popupInputs = this._popup.querySelectorAll('.popup__input');
-
-    if (popupInputs?.length) {
-      popupInputs.forEach((input) => {
+      if (this._popupInputs?.length) {
+      this._popupInputs.forEach((input) => {
         data[input.getAttribute('name')] = input.value;
       });
     };
@@ -23,10 +22,8 @@ export class PopupWithForm extends Popup {
 
   // установка значений полей
   setInputValues(data) {
-    const popupInputs = this._popup.querySelectorAll('.popup__input');
-
-    if (popupInputs?.length) {
-      popupInputs.forEach((input) => {
+        if (this._popupInputs?.length) {
+      this._popupInputs.forEach((input) => {
         const attr = input.getAttribute('name');
         
         if (data[attr]) {
@@ -38,11 +35,7 @@ export class PopupWithForm extends Popup {
 
   // слушатель клик, оверлей, сабмит
   setEventListeners() {
-    this._popup.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup__close-button') || (evt.target === evt.currentTarget)) {
-        this.close();
-      };
-    });
+    super.setEventListeners();
 
     this._form.addEventListener('submit', (evt) => {
       const dataInputs = this._getInputValues();
@@ -53,8 +46,8 @@ export class PopupWithForm extends Popup {
 
   // закрыть попап с ресетом
   close() {
-    this._popup.classList.remove('popup_opened');
+    super.close();
+
     this._form.reset();
-    document.removeEventListener('keydown', this._handleEscClose);
   };
 };
