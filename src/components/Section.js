@@ -12,7 +12,7 @@ export class Section {
     });
   };
 
-  // добавлние карт в галерею
+  // добавление карт в галерею
   addItem = (element) => {
     this._container.prepend(element);
   };

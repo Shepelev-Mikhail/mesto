@@ -9,10 +9,10 @@ export class PopupWithImage extends Popup {
 
   // открыть попап с заполнением
   open = (data) => {
-    super.open();
-
     this._imagePopupViewImage.src = data.link;
     this._imagePopupViewImage.alt = data.name;
     this._captionPopupViewImage.textContent = data.name;
+
+    super.open();
   };
 };

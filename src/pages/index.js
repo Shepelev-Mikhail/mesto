@@ -34,7 +34,7 @@ function addCard(data, callback) {
   if (data.name && data.link) {
     const objCard = new Card(data, '.template', newPopupViewImage.open);
     const card = objCard.createCard();
-
+    
     callback(card);
   };
 };
