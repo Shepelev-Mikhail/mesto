@@ -8,7 +8,8 @@ export class Section {
   // отрисовка карт
   rendererElements() {
     this._items.forEach((item) => {
-      this._renderer(item, this.addItem);
+      const card = this._renderer(item);
+      this.addItem(card);
     });
   };
 

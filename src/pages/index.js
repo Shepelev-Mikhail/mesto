@@ -30,12 +30,12 @@ const section = new Section({ items: initialCards, renderer: addCard }, '.galler
 section.rendererElements();
 
 // класс Card
-function addCard(data, callback) {
+function addCard(data) {
   if (data.name && data.link) {
     const objCard = new Card(data, '.template', newPopupViewImage.open);
     const card = objCard.createCard();
-    
-    callback(card);
+
+    return card;
   };
 };
 
@@ -56,12 +56,12 @@ function saveProfile(evt, data) {
 function createPlace(evt, data) {
   evt.preventDefault();
 
-  const section = new Section({ items: [data], renderer: addCard }, '.gallery');
-  section.rendererElements();
+  const card = addCard(data);
+  section.addItem(card);
 };
 
-// клик на кнопку редактирования
-editProfile.addEventListener('click', () => {
+//колбэк клик на кнопку редактирования профиля
+function clickEditProfileButton() {
   popupProfileFormValidator.resetForm();
 
   newPopupProfileForm.setInputValues(userInfo.getUserInfo());
@@ -69,12 +69,18 @@ editProfile.addEventListener('click', () => {
   popupProfileFormValidator.checkButtonValidity();
 
   newPopupProfileForm.open();
-});
+};
 
-// клик на кнопку +
-addPlace.addEventListener('click', () => {
+// колбэк клик на кнопку создания карточки
+function clickAddPlaceButton() {
   popupPlaceFormvalidator.resetForm();
   popupPlaceFormvalidator.checkButtonValidity();
 
   newPopupPlaceForm.open();
-});
+};
+
+// клик на кнопку редактирования
+editProfile.addEventListener('click', clickEditProfileButton);
+
+// клик на кнопку +
+addPlace.addEventListener('click', clickAddPlaceButton);
