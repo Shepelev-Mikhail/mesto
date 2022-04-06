@@ -99,13 +99,24 @@
       </div>
     </div>
 
+    <div class="popup popup_confirm">
+      <div class="popup__container">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button class="popup__submit popup__submit_confirm" type="submit">Да</button>
+        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
     <template class="template">
       <li class="card">
         <img class="card__image" src="#" alt="">
         <div class="card__info">
           <h2 class="card__title"></h2>
-          <button class="card__like" type="button" aria-label="Нравится">
-          </button>
+          <div class="card__likes">
+            <button class="card__like" type="button" aria-label="Нравится">
+            </button>
+            <span class="card__like-counter">0</span>
+          </div>
         </div>
         <button class="card__delete" type="button" aria-label="Удалить">
         </button>
