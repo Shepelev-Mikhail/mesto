@@ -5,8 +5,15 @@ import { UserInfo } from '../components/UserInfo.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
+import { api } from '../components/Api.js';
 
 import './index.css';
+
+//1
+api.getProfile()
+  .then(res => {
+    userInfo.setUserInfo({ name: res.name, description: res.about })
+  })
 
 //класс Popup
 const newPopupViewImage = new PopupWithImage('.popup_view-image');
