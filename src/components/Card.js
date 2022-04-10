@@ -32,22 +32,21 @@ export class Card {
     const userHasLikedCard = this._data.likes.find(user => user._id === this._data.userId);
 
     return userHasLikedCard
-  }
+  };
 
+  //поставить, убрать лайк
   setLikes(newLike) {
     this._data.likes = newLike
     const likeCounter = this._newCard.querySelector('.card__like-counter');
     likeCounter.textContent = this._data.likes.length;
 
-    
-    if(this.isLiked()) {
+    if (this.isLiked()) {
       this._handleAddLike();
     } else {
       this._handleRemoveLike();
     }
-  }
+  };
 
-  //лайк карточки
   _handleAddLike = () => {
     this._likeButton.classList.add('card__like_active');
   };
@@ -68,8 +67,8 @@ export class Card {
     this._cardImage.setAttribute('alt', this._data.name);
 
     this.setLikes(this._data.likes);
-    
-    if(this._data.userId !== this._data.ownerId) {
+
+    if (this._data.userId !== this._data.ownerId) {
       this._deleteButton.style.display = 'none';
     }
 

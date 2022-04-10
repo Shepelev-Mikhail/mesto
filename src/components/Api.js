@@ -4,25 +4,25 @@ class Api {
     this._baseUrl = baseUrl
   }
 
-  //1
+  //1 Загрузка информации о пользователе с сервера
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .catch(console.log)
   }
 
-  //2
+  //2 Загрузка карточек с сервера
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .catch(console.log)
   }
 
-  //3
+  //3 Редактирование профиля
   editProfile(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
@@ -32,11 +32,11 @@ class Api {
         about
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .catch(console.log)
   }
 
-  //4
+  //4 Добавление новой карточки
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
@@ -46,30 +46,30 @@ class Api {
         link: data.link
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .catch(console.log)
   }
 
-  //6-7
+  //7 Удаление карточки
   deleteCard(id) {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers
     })
 
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .catch(console.log)
   }
 
-  //8
+  //8 Постановка и снятие лайка
   addLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers
     })
 
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .catch(console.log)
   }
 
   deleteLike(id) {
@@ -78,11 +78,11 @@ class Api {
       headers: this._headers
     })
 
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .catch(console.log)
   }
 
-  //9
+  //9 Обновление аватара пользователя
   updateAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
@@ -91,11 +91,9 @@ class Api {
         avatar
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+      .then(res => res.ok ? res.json() : Promise.reject(res.status))
+      .catch(console.log)
   }
-
-
 }
 
 export const api = new Api({
@@ -104,6 +102,4 @@ export const api = new Api({
     authorization: 'b3fe3307-0db2-4d0f-88cc-23b402b89c40',
     'Content-Type': 'application/json'
   }
-}); 
-
-
+});

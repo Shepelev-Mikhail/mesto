@@ -6,13 +6,12 @@ export class PopupWithForm extends Popup {
     this._form = this._popup.querySelector('.popup__form');
     this._callbackSubmitForm = callbackSubmitForm;
     this._popupInputs = this._popup.querySelectorAll('.popup__input');
-    this._submit = this._popup.querySelector('.popup__submit');
   };
 
   // получение значений полей
   getInputValues() {
     let data = {};
-      if (this._popupInputs?.length) {
+    if (this._popupInputs?.length) {
       this._popupInputs.forEach((input) => {
         data[input.getAttribute('name')] = input.value;
       });
@@ -21,16 +20,17 @@ export class PopupWithForm extends Popup {
     return data;
   };
 
+  //изменение колбэка для попапа аватара
   changeSubmitForm(newCallbackSubmitForm) {
     this._callbackSubmitForm = newCallbackSubmitForm
   }
 
   // установка значений полей
   setInputValues(data) {
-        if (this._popupInputs?.length) {
+    if (this._popupInputs?.length) {
       this._popupInputs.forEach((input) => {
         const attr = input.getAttribute('name');
-        
+
         if (data[attr]) {
           input.value = data[attr];
         }
@@ -44,13 +44,7 @@ export class PopupWithForm extends Popup {
 
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      
-      if (this._submit.textContent === 'Сохранить') {
-        this._submit.textContent = 'Сохранение...'
-      } else {
-        this._submit.textContent = 'Создание...'
-      }
-      
+
       const dataInputs = this.getInputValues();
       this._callbackSubmitForm(evt, dataInputs);
       this.close();
