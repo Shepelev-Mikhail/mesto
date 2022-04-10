@@ -6,10 +6,11 @@ export class PopupWithForm extends Popup {
     this._form = this._popup.querySelector('.popup__form');
     this._callbackSubmitForm = callbackSubmitForm;
     this._popupInputs = this._popup.querySelectorAll('.popup__input');
+    this._submit = this._popup.querySelector('.popup__submit');
   };
 
   // получение значений полей
-  _getInputValues() {
+  getInputValues() {
     let data = {};
       if (this._popupInputs?.length) {
       this._popupInputs.forEach((input) => {
@@ -19,6 +20,10 @@ export class PopupWithForm extends Popup {
 
     return data;
   };
+
+  changeSubmitForm(newCallbackSubmitForm) {
+    this._callbackSubmitForm = newCallbackSubmitForm
+  }
 
   // установка значений полей
   setInputValues(data) {
@@ -38,9 +43,18 @@ export class PopupWithForm extends Popup {
     super.setEventListeners();
 
     this._form.addEventListener('submit', (evt) => {
-      const dataInputs = this._getInputValues();
+      evt.preventDefault();
+      
+      if (this._submit.textContent === 'Сохранить') {
+        this._submit.textContent = 'Сохранение...'
+      } else {
+        this._submit.textContent = 'Создание...'
+      }
+      
+      const dataInputs = this.getInputValues();
       this._callbackSubmitForm(evt, dataInputs);
       this.close();
+
     });
   };
 

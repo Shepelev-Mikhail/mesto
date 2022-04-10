@@ -7,7 +7,7 @@ export const validationConfig = {
   errorClass: 'popup__error_visible'
 };
 
-export const initialCards = [
+const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -40,5 +40,10 @@ export const popupProfileForm = popupProfile.querySelector('.popup__form');
 const popupPlace = document.querySelector('.popup_place');
 export const popupPlaceForm = popupPlace.querySelector('.popup__form');
 
+const popupAvatar = document.querySelector('.popup_update-avatar');
+export const popupAvatarForm = popupAvatar.querySelector('.popup__form');
+
+
 export const editProfile = document.querySelector('.profile__edit-button');
 export const addPlace = document.querySelector('.profile__add-button');
+export const avatarIcon = document.querySelector('.profile__avatar');
