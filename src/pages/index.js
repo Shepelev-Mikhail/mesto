@@ -21,18 +21,15 @@ import { api } from '../components/Api.js';
 
 import './index.css';
 
-//1 Загрузка информации о пользователе с сервера
 let userId
 
-api.getProfile()
-  .then(res => {
+Promise.all([api.getProfile(), api.getInitialCards()])
+  .then(([res, cardList]) => {
+    //1 Загрузка информации о пользователе с сервера
     userInfo.setUserInfo({ name: res.name, description: res.about, avatar: res.avatar });
     userId = res._id;
-  });
 
-//2 Загрузка карточек с сервера
-api.getInitialCards()
-  .then(cardList => {
+    //2 Загрузка карточек с сервера
     cardList.forEach(data => {
       const card = addCard({
         name: data.name,
@@ -42,10 +39,10 @@ api.getInitialCards()
         userId: userId,
         ownerId: data.owner._id
       });
-
       section.addItem(card)
     })
   })
+  .catch(console.log);
 
 //класс Popup
 const newPopupViewImage = new PopupWithImage('.popup_view-image');
@@ -91,11 +88,13 @@ function addCard(data) {
             .then(res => {
               objCard.setLikes(res.likes)
             })
+            .catch(console.log)
         } else {
           api.addLike(data.id)
             .then(res => {
               objCard.setLikes(res.likes)
             })
+            .catch(console.log)
         }
       });
     const card = objCard.createCard();
@@ -116,7 +115,9 @@ function confirmDelete(evt, data, objCard) {
   api.deleteCard(data.id)
     .then(res => {
       objCard.handleDelete();
+      popupConfirmDelete.close();
     })
+    .catch(console.log)
 };
 
 // колбэк сохранение профиля
@@ -130,6 +131,10 @@ function saveProfile(evt, data) {
   api.editProfile(name, description)
     .then(res => {
       userInfo.setUserInfo({ name: res.name, description: res.about, avatar: res.avatar });
+      newPopupProfileForm.close();
+    })
+    .catch(console.log)
+    .finally(() => {
       saveProfileButton.textContent = 'Сохранить';
     })
 };
@@ -152,6 +157,10 @@ function createPlace(evt, data) {
         ownerId: data.owner._id
       });
       section.addItem(card);
+      newPopupPlaceForm.close();
+    })
+    .catch(console.log)
+    .finally(() => {
       createCardButton.textContent = 'Создать';
     })
 };
@@ -186,8 +195,12 @@ function clickAvatarIcon() {
     saveAvatarButton.textContent = 'Сохранение...';
     api.updateAvatar(link)
       .then(res => {
-        saveAvatarButton.textContent = 'Сохранить';
         userInfo.setUserInfo({ name: res.name, description: res.about, avatar: res.avatar });
+        popupChangeAvatar.close();
+      })
+      .catch(console.log)
+      .finally(() => {
+        saveAvatarButton.textContent = 'Сохранить';
       })
   })
 };

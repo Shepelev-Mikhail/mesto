@@ -2,25 +2,27 @@ class Api {
   constructor({ baseUrl, headers }) {
     this._headers = headers
     this._baseUrl = baseUrl
-  }
+  };
+
+  _checkResponse(res) {
+    return res.ok ? res.json() : Promise.reject(res.status)
+  };
 
   //1 Загрузка информации о пользователе с сервера
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
-      .catch(console.log)
-  }
+      .then(this._checkResponse)
+  };
 
   //2 Загрузка карточек с сервера
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
-      .catch(console.log)
-  }
+      .then(this._checkResponse)
+  };
 
   //3 Редактирование профиля
   editProfile(name, about) {
@@ -32,9 +34,8 @@ class Api {
         about
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
-      .catch(console.log)
-  }
+      .then(this._checkResponse)
+  };
 
   //4 Добавление новой карточки
   addCard(data) {
@@ -46,9 +47,8 @@ class Api {
         link: data.link
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
-      .catch(console.log)
-  }
+      .then(this._checkResponse)
+  };
 
   //7 Удаление карточки
   deleteCard(id) {
@@ -56,10 +56,8 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
-      .catch(console.log)
-  }
+      .then(this._checkResponse)
+  };
 
   //8 Постановка и снятие лайка
   addLike(id) {
@@ -67,20 +65,16 @@ class Api {
       method: 'PUT',
       headers: this._headers
     })
-
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
-      .catch(console.log)
-  }
+      .then(this._checkResponse)
+  };
 
   deleteLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'DELETE',
       headers: this._headers
     })
-
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
-      .catch(console.log)
-  }
+      .then(this._checkResponse)
+  };
 
   //9 Обновление аватара пользователя
   updateAvatar(avatar) {
@@ -91,10 +85,9 @@ class Api {
         avatar
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject(res.status))
-      .catch(console.log)
-  }
-}
+      .then(this._checkResponse)
+  };
+};
 
 export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',

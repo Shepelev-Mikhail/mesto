@@ -47,8 +47,6 @@ export class PopupWithForm extends Popup {
 
       const dataInputs = this.getInputValues();
       this._callbackSubmitForm(evt, dataInputs);
-      this.close();
-
     });
   };
 
